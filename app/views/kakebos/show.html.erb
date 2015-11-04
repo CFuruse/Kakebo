@@ -1,0 +1,52 @@
+<% provide(:title, '詳細') %>
+<div class="kakebo">
+  <div id="content">
+    <div class="contextual">
+      <%= link_to "編集", edit_kakebo_path(@kakebo) %>
+      <%= link_to "削除", @kakebo, method: :delete,
+                                  data: { confirm: "削除しますか？" } %>
+    </div>
+    <div class="subject">
+      # <%= @kakebo.id %>
+    </div>
+    <table class="attributes">
+      <tbody>
+        <tr>
+          <th>項目：</th>
+          <td><%= @kakebo.komoku %></td>
+        </tr>
+        <tr>
+          <th>収入：</th>
+          <td><%= @kakebo.shunyu %></td>
+        </tr>
+        <tr>
+          <th>支出：</th>
+          <td><%= @kakebo.shishutsu %></td>
+        </tr>
+        <tr>
+          <th>種類：</th>
+          <td><%= @kakebo.kind %></td>
+        </tr>
+        <tr>
+          <th>作成日：</th>
+          <td><%= @kakebo.created_at %></td>
+        </tr>
+        <tr>
+          <th>更新日：</th>
+          <td><%= @kakebo.updated_at %></td>
+        </tr>
+        <tr>
+          <th>スキャン：</th>
+          <td><%= @kakebo.scan %></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <% if @kakebo.scan %>
+      <div class="showimage">
+        <%= image_tag File.basename(@kakebo.scan) %>
+      </div>
+    <% end %>
+    <hr>
+  </div>
+</div>

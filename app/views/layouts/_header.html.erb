@@ -1,0 +1,54 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "KAKEBO", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "ホーム",    root_path %></li>
+          <div class="nav-menu-separator"></div>
+          <% if signed_in? %>
+            <% if current_user.admin? %>
+              <li id="user-menu", class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  ユーザ <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "作成", signup_path %></li>
+                  <li><%= link_to "一覧", users_path %></li>
+                </ul>
+              </li>
+            <div class="nav-menu-separator"></div>
+              <li id="data-menu", class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  データ <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "登録", new_kakebo_path %></li>
+                  <li><%= link_to "検索", kakebos_path %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "検索", kakebos_path %></li>
+            <% end %>
+            <div class="nav-menu-separator"></div>
+            <li id="account-menu", class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_user.name %> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "プロフィール", current_user %></li>
+                <li><%= link_to "設定", edit_user_path(current_user) %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "サインアウト", signout_path, method: "delete" %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to "サインイン", signin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

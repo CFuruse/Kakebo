@@ -1,0 +1,435 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+/* mixins, variables, etc */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+  a {
+    color: $gray;
+    &:hover {
+      color: $grayDarker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+/* forms */
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+/* users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+/* original */
+
+.date_width {
+  display: inline-block;
+  width: auto;
+  margin-bottom: 13px;
+}
+
+.divider-vertical {
+  color: #ffffff;
+}
+
+.nav-menu-separator {
+    display: block;
+    float: left;
+    border-left: 1px solid #222;
+    border-right: 1px solid #444;
+    height: 20px;
+    width: 0px;
+    margin: 10px 0px;
+}
+
+.alert {
+  padding: 8px 25px 8px 14px;
+  margin: 0.5em 0px 1em;
+  border: 1px solid;
+  text-align: center;
+}
+
+.alert .shushi-plus {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  display: inline;
+  color: #168;
+  padding: 4px 0px;
+}
+
+.alert .shushi-minus {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  display: inline;
+  color: 	#DC143C;
+  padding: 4px 0px;
+}
+
+.messageDiv {
+  padding-left: 20px;
+  width: 65%;
+}
+
+/* show */
+#content {
+//    width: 75%;
+    background-color: #FFF;
+    margin: 0px;
+//    border-right: 1px solid #DDD;
+    padding: 6px 10px 10px;
+    z-index: 10;
+}
+
+table.attributes {
+  font-size: 15px;
+  width: 100%;
+}
+
+#content hr {
+    width: 100%;
+    height: 1px;
+    background: #CCC none repeat scroll 0% 0%;
+    border: 0px none;
+}
+
+div.kakebo {
+  background: none repeat scroll 0% 0%;
+  padding: 6px;
+  margin-bottom: 6px;
+  border: 1px solid #D7D7D7;
+}
+
+.contextual {
+    float: right;
+    white-space: nowrap;
+    line-height: 1.4em;
+    margin-top: -5px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.contextual a {
+  padding-left: 10px;
+}
+
+.headid {
+  color: #222;
+  font-size: 18px;
+  margin: 0;
+}
+
+div.subject {
+  font-size: 19px;
+  margin-left: 35px;
+  margin-bottom: 10px;
+}
+
+.showimage {
+  cursor: zoom-in;
+}
+
+table.table-list th {
+  background-color: #EEE;
+  padding: 4px;
+}
+
+table.table-list {
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+table.table-list tbody tr:nth-child(even) {
+  background-color: #F6F7F8;
+}
+
+.table th, .table td {
+  padding: 4px;
+  border-top: 0px;
+}
+
+.show_year {
+  font-size: 25px;
+  padding: 2px 10px 1px 0px;
+  margin-top: -5px;
+  margin-bottom: -10px;
+}
+
+table.table-list-month {
+  margin-top: 25px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  border-spacing: 0px;
+  text-align: left;
+}
+
+table.table-list-month th {
+  background-color: #EEE;
+  padding: 4px;
+}
+
+table.table-list-month td {
+  padding: 4px;
+}
+
+table.table-list-month tbody tr:nth-child(even) {
+  background-color: #F6F7F8;
+}
+
+tr.sum {
+  font-size: 16px;
+}
+
+td.akaji {
+  color: #FF0000;
+}
+
+table.table-list-month tbody tr:hover {
+  background-color: #FFFACD;
+}
+
+table.search {
+  width: 100%;
+  margin: auto;
+}
+
+table.search tr {
+  padding: 0px;
+  vertical-align: middle;
+}
+
+/* index.html.erb */
+
+.btn-large {
+    padding: 8px;
+    font-size: 13.5px;
+    border-radius: 6px;
+    margin-bottom: 11px;
+}
+
+form {
+  margin: 0px;
+}
+
+.btn {
+  line-height: 13px;
+}
+
+td.search_year_form {
+  width: 200px;
+}
+
+.offset3 {
+    margin-left: 190px;
+}
+
+table.table-list tbody tr:hover {
+  background-color: #FFFACD;
+}
+
+/* home.html.erb */
+
+.hero-unit {
+  padding: 5px;
+  width: 60%;
+}
+
+.name {
+  margin-bottom: 10px;
+}
+
+.hero-unit h2 {
+  margin-bottom: 12px;
+}
+
+.info {
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+  background-color: #FFF;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #EEE;
+  padding: 0px;
+}
+
+.info h2 {
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* new account */
+.new-account {
+  margin-top: 15px;
+}

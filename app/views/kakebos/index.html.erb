@@ -1,0 +1,36 @@
+<% provide(:title, "検索") %>
+<div class="row">
+  <div class="span6 offset3">
+    <table><tr>
+      <td class="search_year_form">
+        <%= form_for @kakebo, :url => search_month_kakebos_path do |f| %>
+          <%= f.label :date, "月単位検索"%>
+          <%= f.date_select :date,
+                        {
+                          use_month_numbers: true,
+                          start_year: 2012,
+                          discard_day: true,
+                        },
+                        { class: "date_width form-control" }
+          %>
+          <%= f.submit "検索", class: "btn btn-large btn-primary" %>
+        <% end %>
+      </td>
+      <td>
+        <%= form_for @kakebo, :url => search_year_kakebos_path do |f| %>
+          <%= f.label :date, "年単位検索"%>
+          <%= f.date_select :date,
+                        {
+                          start_year: 2012,
+                          use_month_numbers: true,
+                          discard_month: true,
+                          discard_day: true,
+                        },
+                        { class: "date_width form-control" }
+          %>
+          <%= f.submit "検索", class: "btn btn-large btn-primary" %>
+        <% end %>
+      </td>
+    </tr></table>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<% provide(:title, 'ユーザ作成') %>
+<h1>ユーザ作成</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: @user  %>
+
+      <%= f.label "名前" %>
+      <%= f.text_field :name %>
+
+      <%= f.label "パスワード" %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "パスワード再入力" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label "管理者ユーザ" %>
+      <%= f.check_box :admin %><br>
+
+      <%= f.submit "アカウント作成", class: "btn btn-large btn-primary new-account" %>
+    <% end %>
+  </div>
+</div>

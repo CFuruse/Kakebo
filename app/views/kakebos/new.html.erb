@@ -1,0 +1,52 @@
+<% provide(:title, 'データ登録') %>
+<h1>データ登録</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@kakebo) do |f| %>
+      <%= render 'shared/error_messages', object: @kakebo %>
+
+      <%= f.label :date %>
+      <%= f.date_select 'date',
+                        { use_month_numbers: true },
+                        { class: "date_width"}
+      %>
+
+      <%= f.label :komoku, "項目" %>
+      <%= f.text_field :komoku %>
+
+      <%= f.label :shunyu, "収入" %>
+      <%= f.number_field :shunyu %>
+
+      <%= f.label :shishutsu, "支出" %>
+      <%= f.number_field :shishutsu %>
+
+      <%= f.label :kind, "種類" %>
+      <%= f.select :kind,
+                   [
+                     ["食費", "食費"],
+                     ["家賃", "家賃"],
+                     ["保険", "保険"],
+                     ["娯楽", "娯楽"],
+                     ["日用品", "日用品"],
+                     ["洋服", "洋服"],
+                     ["医療費", "医療費"],
+                     ["交通費", "交通費"],
+                     ["ガソリン", "ガソリン"],
+                     ["光熱費", "光熱費"],
+                     ["子供", "子供"],
+                     ["その他出費", "その他出費"],
+                     ["生活費", "生活費"],
+                     ["その他収入", "その他収入"]
+                   ],
+                   {},
+                   { class: "date_width" }
+      %>
+
+      <%= f.label :scan, "スキャン" %>
+      <%= f.file_field :scan %><br>
+
+      <%= f.submit "登録", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
