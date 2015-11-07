@@ -82,6 +82,31 @@ class KakebosController < ApplicationController
     @kind_hash.each {|key, val|
       @kind_hash[key] = @kakebos.where(kind: key).count
     }
+    # 選択月の毎日のデータを収集
+    @shunyu_each = Array.new
+    @shishutsu_each = Array.new
+    @shushi_each = Array.new
+    until search == search.end_of_month
+      @shunyu_each.push(
+        [
+          search,
+          Kakebo.where(
+            date:
+            search
+          ).sum(:shunyu)
+        ]
+      )
+      @shishutsu_each.push(
+        [
+          search,
+          Kakebo.where(
+            date:
+            search
+          ).sum(:shishutsu)
+        ]
+      )
+      search = search.tomorrow
+    end
   end
 
   def search_year
