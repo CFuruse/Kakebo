@@ -46,6 +46,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chartkick (1.4.1)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.0.1)
@@ -184,6 +185,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.3.2.0)
   bootstrap-will_paginate (= 0.0.9)
   capybara (= 2.1.0)
+  chartkick
   coffee-rails (= 4.0.1)
   cucumber-rails (= 1.4.0)
   database_cleaner!
