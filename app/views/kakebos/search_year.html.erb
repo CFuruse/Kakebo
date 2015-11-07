@@ -1,45 +1,56 @@
 <% provide(:title, '年単位検索') %>
-<table class="table table-list">
+<div class="show_year">
+  <%= @year %> 年
+</div>
 
-  <div class="show_year">
-    <%= @year %> 年
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tab-list-year" data-toggle="tab">リスト</a></li>
+  <li><a href="#tab-graph-year" data-toggle="tab">グラフ</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade in active" id="tab-list-year">
+    <table class="table table-list">
+      <div class="header">
+        <thead>
+          <tr>
+            <th>月</th>
+            <th>収入</th>
+            <th>支出</th>
+            <th>収支</th>
+          </tr>
+        </thead>
+      </div>
+      <tbody>
+        <% (0..11).each do |month| %>
+          <tr>
+            <td><%= month + 1 %></td>
+            <% (0..2).each do |element| %>
+              <% if @shushi_array[month][element] < 0 %>
+                <td class="akaji">
+                  <%= @shushi_array[month][element] %> 円
+                </td>
+              <% else %>
+                <td><%= @shushi_array[month][element] %> 円</td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+          <tr class="sum">
+            <td>計</td>
+            <td><%= @shunyu_sum_year %> 円</td>
+            <td><%= @shishutsu_sum_year %> 円</td>
+            <% if @shushi_year < 0 %>
+              <td class="akaji"><%= @shushi_year %> 円</td>
+            <% else %>
+              <td><%= @shushi_year %> 円</td>
+            <% end %>
+          </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="header">
-    <thead>
-      <tr>
-        <th>月</th>
-        <th>収入</th>
-        <th>支出</th>
-        <th>収支</th>
-      </tr>
-    </thead>
+  <div class="tab-pane fade" id="tab-graph-year">
+    <p>グラフ</p>
   </div>
-
-  <tbody>
-    <% (0..11).each do |month| %>
-      <tr>
-        <td><%= month + 1 %></td>
-        <% (0..2).each do |element| %>
-          <% if @shushi_array[month][element] < 0 %>
-            <td class="akaji">
-              <%= @shushi_array[month][element] %> 円
-            </td>
-          <% else %>
-            <td><%= @shushi_array[month][element] %> 円</td>
-          <% end %>
-        <% end %>
-      </tr>
-    <% end %>
-      <tr class="sum">
-        <td>計</td>
-        <td><%= @shunyu_sum_year %> 円</td>
-        <td><%= @shishutsu_sum_year %> 円</td>
-        <% if @shushi_year < 0 %>
-            <td class="akaji"><%= @shushi_year %> 円</td>
-        <% else %>
-          <td><%= @shushi_year %> 円</td>
-        <% end %>
-      </tr>
-  </tbody>
-</table>
+</div>
