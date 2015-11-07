@@ -1,41 +1,50 @@
 <% provide(:title, '月単位検索') %>
-<table class="table-list-month">
-
-  <div class="messageDiv">
-    <% if @shushi >= 0 %>
-      <div class="alert alert-info">
-        <p class="shushi-plus">
-    <% else %>
-      <div class="alert alert-danger">
-        <p class="shushi-minus">
-    <% end %>
-      <%= @year %> 年 <%= @month %> 月の収支は <%= @shushi %> 円です（収入：<%= @shunyu_sum %> 円、支出：<%= @shishutsu_sum %> 円）</p>
-    </div>
+<div class="messageDiv">
+  <% if @shushi >= 0 %>
+    <div class="alert alert-info">
+      <p class="shushi-plus">
+  <% else %>
+    <div class="alert alert-danger">
+      <p class="shushi-minus">
+  <% end %>
+    <%= @year %> 年 <%= @month %> 月の収支は <%= @shushi %> 円です（収入：<%= @shunyu_sum %> 円、支出：<%= @shishutsu_sum %> 円）</p>
   </div>
+</div>
 
-  <thead>
-    <tr>
-      <th><%= sortable "id",        "#" %></th>
-      <th><%= sortable "date",      "日付" %></th>
-      <th><%= sortable "komoku",    "項目" %></th>
-      <th><%= sortable "shunyu",    "収入" %></th>
-      <th><%= sortable "shishutsu", "支出" %></th>
-      <th><%= sortable "kind",      "種類" %></th>
-    </tr>
-  </thead>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tab-list" data-toggle="tab">リスト</a></li>
+  <li><a href="#tab-graph" data-toggle="tab">グラフ</a></li>
+</ul>
 
-  <tbody>
-    <% @kakebos.each do |k| %>
-      <tr>
-        <td><%= link_to k.id, k %> </td>
-        <td><%= k.date %> </td>
-        <td><%= link_to k.komoku, k %> </td>
-        <td><%= k.shunyu %> 円</td>
-        <td><%= k.shishutsu %> 円</td>
-        <td><%= k.kind %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= will_paginate @kakebos, :params => {:kakebo => params[:kakebo]} %>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade in active" id="tab-list">
+    <table class="table-list-month">
+      <thead>
+        <tr>
+          <th><%= sortable "id",        "#" %></th>
+          <th><%= sortable "date",      "日付" %></th>
+          <th><%= sortable "komoku",    "項目" %></th>
+          <th><%= sortable "shunyu",    "収入" %></th>
+          <th><%= sortable "shishutsu", "支出" %></th>
+          <th><%= sortable "kind",      "種類" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @kakebos.each do |k| %>
+          <tr>
+            <td><%= link_to k.id, k %> </td>
+            <td><%= k.date %> </td>
+            <td><%= link_to k.komoku, k %> </td>
+            <td><%= k.shunyu %> 円</td>
+            <td><%= k.shishutsu %> 円</td>
+            <td><%= k.kind %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @kakebos, :params => {:kakebo => params[:kakebo]} %>
+  </div>
+  <div class="tab-pane fade" id="tab-graph">
+    <p>グラフ</p>
+  </div>
+</div>

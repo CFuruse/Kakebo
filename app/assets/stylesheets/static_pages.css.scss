@@ -239,6 +239,7 @@ input {
 .messageDiv {
   padding-left: 20px;
   width: 65%;
+  margin-bottom: 25px;
 }
 
 /* show */
@@ -308,7 +309,6 @@ table.table-list th {
 
 table.table-list {
   border-collapse: collapse;
-  margin-top: 25px;
 }
 
 table.table-list tbody tr:nth-child(even) {
@@ -324,11 +324,10 @@ table.table-list tbody tr:nth-child(even) {
   font-size: 25px;
   padding: 2px 10px 1px 0px;
   margin-top: -5px;
-  margin-bottom: -10px;
+  margin-bottom: 20px;
 }
 
 table.table-list-month {
-  margin-top: 25px;
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 20px;
