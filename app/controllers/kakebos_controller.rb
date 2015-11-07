@@ -56,11 +56,13 @@ class KakebosController < ApplicationController
                  event[:"date(2i)"].to_i,
                  event[:"date(3i)"].to_i
                  )
+    # 選択月のデータを収集
     @kakebos = Kakebo.all.order(sort_column + ' ' + sort_direction)
     @kakebos = @kakebos.where(
       date:
       search.beginning_of_month..search.end_of_month
       ).paginate(page: params[:page], :per_page => 50).order(:id)
+    # 収入、支出、収支を収集
     @shunyu_sum = Kakebo.where(
       date:
       search.beginning_of_month..search.end_of_month
@@ -70,6 +72,16 @@ class KakebosController < ApplicationController
       search.beginning_of_month..search.end_of_month
     ).sum(:shishutsu)
     @shushi = @shunyu_sum - @shishutsu_sum
+    # 各種類の数量を収集
+    @kind_hash = {
+      食費: 0, 家賃: 0, 保険: 0, 娯楽: 0,
+      日用品: 0, 洋服: 0, 医療費: 0, 交通費: 0,
+      ガソリン: 0, 光熱費: 0, 子供: 0, その他出費: 0,
+      生活費: 0, その他収入: 0
+    }
+    @kind_hash.each {|key, val|
+      @kind_hash[key] = @kakebos.where(kind: key).count
+    }
   end
 
   def search_year
