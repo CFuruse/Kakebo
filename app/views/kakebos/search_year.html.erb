@@ -51,6 +51,37 @@
   </div>
 
   <div class="tab-pane fade" id="tab-graph-year">
-    <p>グラフ</p>
+    <% @shunyu_array_graph    = Array.new %>
+    <% @shishutsu_array_graph = Array.new %>
+    <% @shushi_array_graph    = Array.new %>
+    <% element = 0 %>
+    <% (0..11).each do |month| %>
+      <% @shunyu_array_graph.push(
+           [
+             month + 1,
+             @shushi_array[month][element]
+           ]
+         ) %>
+      <% @shishutsu_array_graph.push(
+           [
+             month + 1,
+             @shushi_array[month][element+1]
+           ]
+         ) %>
+      <% @shushi_array_graph.push(
+           [
+             month + 1,
+             @shushi_array[month][element+2]
+           ]
+         ) %>
+      <% element = 0 %>
+    <% end %>
+    <%= column_chart [
+          { name: "収入", data: @shunyu_array_graph },
+          { name: "支出", data: @shishutsu_array_graph },
+        ] %>
+    <%= column_chart [
+          { name: "収支", data: @shushi_array_graph },
+        ] %>
   </div>
 </div>

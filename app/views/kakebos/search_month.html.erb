@@ -45,6 +45,10 @@
     <%= will_paginate @kakebos, :params => {:kakebo => params[:kakebo]} %>
   </div>
   <div class="tab-pane fade" id="tab-graph">
-    <p>グラフ</p>
+    <%= pie_chart @kind_hash %>
+    <%= line_chart [
+          { name: "収入", data: @shunyu_each },
+          { name: "支出", data: @shishutsu_each },
+        ]%>
   </div>
 </div>
