@@ -15,3 +15,5 @@
 *.o
 *.pyc
 *.pyo
+
+.DS_Store
