@@ -46,9 +46,7 @@
   </div>
   <div class="tab-pane fade" id="tab-graph">
     <%= pie_chart @kind_hash %>
-    <%= line_chart [
-          { name: "収入", data: @shunyu_each },
-          { name: "支出", data: @shishutsu_each },
-        ]%>
+    <%= line_chart @shunyu_each %>
+    <%= line_chart @shishutsu_each, colors: [ "red", "#ff0" ] %>
   </div>
 </div>
