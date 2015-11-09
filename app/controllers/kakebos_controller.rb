@@ -80,7 +80,10 @@ class KakebosController < ApplicationController
       生活費: 0, その他収入: 0
     }
     @kind_hash.each {|key, val|
-      @kind_hash[key] = @kakebos.where(kind: key).count
+      @kind_hash[key] = @kakebos.where(
+        kind: key,
+        date: search.beginning_of_month..search.end_of_month
+        ).sum(:shishutsu)
     }
     # 選択月の毎日のデータを収集
     @shunyu_each = Array.new
