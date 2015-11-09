@@ -86,7 +86,9 @@ class KakebosController < ApplicationController
     @shunyu_each = Array.new
     @shishutsu_each = Array.new
     @shushi_each = Array.new
-    until search == search.end_of_month
+    count = 0
+    daycount = search.end_of_month.day   # 検索月の日数
+    while count < daycount
       @shunyu_each.push(
         [
           search,
@@ -106,6 +108,7 @@ class KakebosController < ApplicationController
         ]
       )
       search = search.tomorrow
+      count += 1
     end
   end
 
