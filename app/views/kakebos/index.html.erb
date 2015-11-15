@@ -1,6 +1,6 @@
 <% provide(:title, "検索") %>
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span6 offset3 search_form">
     <table><tr>
       <td class="search_year_form">
         <%= form_for @kakebo, :url => search_month_kakebos_path do |f| %>
@@ -31,6 +31,104 @@
           <%= f.submit "検索", class: "btn btn-large btn-primary" %>
         <% end %>
       </td>
+    </tr></table>
+
+    <table class="detail_search">
+      <tr>
+        <td>
+          <%= search_form_for @q,
+                              url: search_detail_kakebos_path,
+                              method: :post do |f|
+          %>
+            <label>詳細検索</label>
+        </td>
+      </tr>
+      <tr>
+        <td id="id_eq">
+            <%= f.label :id %>
+            <%= f.number_field :id_eq, class: "form-control" %>
+        </td>
+        <td id="date_eq">
+            <%= f.label "日付" %>
+            <%= f.date_select :date_gteq,
+                              {
+                                include_blank: true,
+                                use_month_numbers: true,
+                                start_year: 2012,
+                              },
+                              class: "date_width form-control"
+            %>
+            〜
+            <%= f.date_select :date_lteq,
+                              {
+                                include_blank: true,
+                                use_month_numbers: true,
+                                start_year: 2012,
+                              },
+                              class: "date_width form-control"
+            %>
+        </td>
+      </tr>
+    </table>
+    <table class="detail_search">
+      <tr>
+        <td id="komoku_form">
+            <%= f.label "項目" %>
+            <%= f.text_field :komoku_cont, class: "form-control" %>
+        </td>
+      </tr>
+    </table>
+    <table class="detail_search">
+      <tr>
+        <td class="money">
+            <%= f.label "収入" %>
+            <%= f.number_field :shunyu_gteq, class: "form-control" %>
+            〜
+            <%= f.number_field :shunyu_lteq, class: "form-control" %>
+        </td>
+      </tr>
+    </table>
+    <table class="detail_search">
+      <tr>
+        <td class="money">
+            <%= f.label "支出" %>
+            <%= f.number_field :shishutsu_gteq, class: "form-control" %>
+            〜
+            <%= f.number_field :shishutsu_lteq, class: "form-control" %>
+        </td>
+      </tr>
+    </table>
+    <table class="detail_search">
+      <tr>
+        <td class="kind">
+            <%= f.label "種類" %>
+            <%= f.select :kind_eq,
+                         [
+                           ["食費", "食費"],
+                           ["家賃", "家賃"],
+                           ["保険", "保険"],
+                           ["娯楽", "娯楽"],
+                           ["日用品", "日用品"],
+                           ["洋服", "洋服"],
+                           ["医療費", "医療費"],
+                           ["交通費", "交通費"],
+                           ["ガソリン", "ガソリン"],
+                           ["光熱費", "光熱費"],
+                           ["子供", "子供"],
+                           ["その他出費", "その他出費"],
+                           ["生活費", "生活費"],
+                           ["その他収入", "その他収入"]
+                         ],
+                         include_blank: true,
+                         class: "date_width"
+            %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <%= f.submit "検索", class: "btn btn-large btn-primary" %>
+          <% end %>
+        </td>
     </tr></table>
   </div>
 </div>

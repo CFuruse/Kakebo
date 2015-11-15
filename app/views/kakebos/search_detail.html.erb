@@ -1,0 +1,57 @@
+<% provide(:title, '詳細検索') %>
+
+<div class="search_conditions">
+<table>
+  <tr>
+    <th>検索条件</th>
+  </tr>
+  <tr>
+    <th>id:</th>
+    <td><%= @q.id_eq %></td>
+    <th>収入:</th>
+    <td><%= @q.shunyu_gteq %> 円 〜 <%= @q.shunyu_lteq %> 円<td>
+  </tr>
+  <tr>
+    <th>日付:</th>
+    <td><%= @q.date_gteq %> 〜 <%= @q.date_lteq %></td>
+    <th>支出:</th>
+    <td><%= @q.shishutsu_gteq %> 円 〜 <%= @q.shishutsu_lteq %> 円</td>
+  </tr>
+  <tr>
+    <th>項目名:</th>
+    <td><%= @q.komoku_cont %></td>
+    <th>種類:</th>
+    <td><%= @q.kind_eq %></td>
+  </tr>
+</table>
+</div>
+
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane in active" id="tab-list">
+    <table class="table-list-month">
+      <thead>
+        <tr>
+          <th><%= sortable "id",        "#" %></th>
+          <th><%= sortable "date",      "日付" %></th>
+          <th><%= sortable "komoku",    "項目" %></th>
+          <th><%= sortable "shunyu",    "収入" %></th>
+          <th><%= sortable "shishutsu", "支出" %></th>
+          <th><%= sortable "kind",      "種類" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @kakebos.each do |k| %>
+          <tr>
+            <td><%= link_to k.id, k %> </td>
+            <td><%= k.date %> </td>
+            <td><%= link_to k.komoku, k %> </td>
+            <td><%= k.shunyu %> 円</td>
+            <td><%= k.shishutsu %> 円</td>
+            <td><%= k.kind %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @kakebos, :params => {:kakebo => params[:search_params]} %>
+  </div>
+</div>

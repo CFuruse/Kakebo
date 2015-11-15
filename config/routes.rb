@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root  'static_pages#home'
   resources :kakebos do
     collection do
+      post :search_detail
+      get  :search_detail
       post :search_month
       get  :search_month
       post :search_year
