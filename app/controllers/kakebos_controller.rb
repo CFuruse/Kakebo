@@ -45,6 +45,7 @@ class KakebosController < ApplicationController
 
   def index
     @kakebo = Kakebo.new
+    @q = Kakebo.ransack
   end
 
   def search_month
@@ -169,6 +170,13 @@ class KakebosController < ApplicationController
     end
   end
 
+  def search_detail
+    @q = Kakebo.ransack(params[:q])
+    @kakebos = @q
+               .result
+               .paginate(page: params[:page], :per_page => 50).order(:id)
+  end
+
   def show
     @kakebo = Kakebo.find(params[:id])
   end
@@ -228,4 +236,13 @@ class KakebosController < ApplicationController
       Kakebo.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
 
+    def search_params
+      search_conditions = %i(
+        id_eq date_gteq(1i) date_gteq(2i) date_gteq(3i)
+        date_lteq(1i) date_lteq(2i) date_lteq(3i) komoku_cont
+        shunyu_lteq shunyu_gteq shishutsu_lteq shishutsu_gteq
+        kind_eq
+      )
+      params.require(:q).permit(search_conditions)
+    end
 end

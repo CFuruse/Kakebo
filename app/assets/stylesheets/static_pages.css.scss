@@ -370,6 +370,35 @@ table.search tr {
   vertical-align: middle;
 }
 
+div.search_conditions {
+  background: none repeat scroll 0% 0%;
+  padding: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #D7D7D7;
+  border-radius: 25px;
+  width: 80%;
+  font-family: sans-serif;
+}
+
+.search_conditions table {
+  font-family: sans-serif;
+  margin-top: 3px;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  font-size: 14px;
+}
+
+.search_conditions table td {
+  text-align: center;
+  width: 500px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.search_conditions table th {
+  text-align: right;
+  width: 200px;
+}
+
 /* index.html.erb */
 
 .btn-large {
@@ -397,6 +426,50 @@ td.search_year_form {
 
 table.table-list tbody tr:hover {
   background-color: #FFFACD;
+}
+
+.span6.search_form {
+  width: 600px;
+  margin-top: 10px;
+}
+
+table.detail_search {
+  margin-top: 15px;
+}
+
+table.detail_search select {
+  display: inline-block;
+  width: auto;
+  margin-bottom: 13px;
+}
+
+table.detail_search label {
+  width: 120px;
+}
+
+#id_eq {
+  width: 40px;
+}
+
+#q_id_eq {
+  width: 90px;
+}
+
+#date_eq {
+  width: 700px;
+  padding-top: 4px;
+}
+
+#komoku_form {
+  width: 500px;
+}
+
+td.money input {
+  width: 238px;
+}
+
+td.kind select {
+  width: 150px;
 }
 
 /* home.html.erb */
