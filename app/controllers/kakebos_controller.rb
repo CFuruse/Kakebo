@@ -171,7 +171,9 @@ class KakebosController < ApplicationController
   end
 
   def search_detail
-    @q = Kakebo.ransack(params[:q])
+    @q = Kakebo.all.order(
+           sort_column + ' ' + sort_direction
+         ).ransack(params[:q])
     @kakebos = @q
                .result
                .paginate(page: params[:page], :per_page => 50).order(:id)
