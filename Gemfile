@@ -13,6 +13,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'rake', '10.4.2'
 gem "chartkick"
 gem 'ransack'
+gem 'gretel'
 
 # Use sqlite3 as the database for Active Record
 #group :development, :test do
