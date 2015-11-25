@@ -527,12 +527,14 @@ ul.detail li {
 }
 
 .breadcrumbs {
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 8px 10px 10px 15px;
   background-color: #F5F5F5;
-  padding-left: 57px;
 }
 
 div.row {
   margin-top: 35px;
+}
+
+div.bread {
+  background-color: #F5F5F5;
 }
