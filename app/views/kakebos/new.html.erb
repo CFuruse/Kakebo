@@ -46,7 +46,10 @@
       %>
 
       <%= f.label :scan, "スキャン" %>
-      <%= f.file_field :scan %><br>
+      <%= f.file_field :scan %>
+
+      <%= f.label :bikou, "備考" %>
+      <%= f.text_field :bikou %>
 
       <%= f.submit "登録", class: "btn btn-large btn-primary" %>
     <% end %>
