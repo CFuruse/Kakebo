@@ -9,4 +9,5 @@ class Kakebo < ActiveRecord::Base
           }
   validates :kind,       presence: true, length: { maximum: 20 }
   validates :scan,       presence: false, length: { maximum: 200 }
+  validates :bikou,      presence: false, length: { maximum: 200 }
 end

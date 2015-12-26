@@ -50,9 +50,10 @@
         <div class="scanname">
           アップロード済：<%= @kakebo.scan.split("/")[-1] %>
         </div>
-      <% else %>
-        <br>
       <% end %>
+
+      <%= f.label :bkou, "備考" %>
+      <%= f.text_field :bikou %>
 
       <%= f.submit "更新", class: "btn btn-large btn-primary" %>
     <% end %>

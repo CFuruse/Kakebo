@@ -235,7 +235,7 @@ class KakebosController < ApplicationController
 
     def kakebo_params
       params.require(:kakebo).permit(:date, :komoku, :shunyu, :shishutsu,
-                                     :kind, :scan,   :scanfile)
+                                     :kind, :scan,   :scanfile, :bikou)
     end
 
     def file_params
