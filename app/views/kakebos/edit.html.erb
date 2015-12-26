@@ -44,7 +44,14 @@
       %>
 
       <%= f.label :scan, "スキャン" %>
-      <%= f.file_field :scan %><br>
+      <%= f.file_field :scan %>
+      <% if @kakebo.scan %>
+        <div class="scanname">
+          アップロード済：<%= @kakebo.scan.split("/")[-1] %>
+        </div>
+      <% else %>
+        <br>
+      <% end %>
 
       <%= f.submit "更新", class: "btn btn-large btn-primary" %>
     <% end %>
