@@ -190,11 +190,23 @@ class KakebosController < ApplicationController
   def update
     @kakebo = Kakebo.find(params[:id])
     begin
-      upload_file = kakebo_params[:scan]
+      if kakebo_params[:scan]
+        upload_file = kakebo_params[:scan]
+      elsif @kakebo.scan
+        upload_file = @kakebo.scan
+      end
       regist_params = {}
       regist_params = kakebo_params
       name = upload_file.original_filename
       regist_params[:scan] = IMAGE_PATH + name
+    rescue
+      if @kakebo.update_attributes(regist_params)
+        flash[:success] = "更新が完了しました"
+        redirect_to @kakebo
+      else
+        render action: 'edit'
+      end
+      return
     end
     if !['.jpg', '.png', '.gif'].include?(File.extname(name).downcase)
       flash[:error] = 'jpg, pdng, gifのみアップロードできます'
