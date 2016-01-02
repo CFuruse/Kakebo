@@ -9,38 +9,7 @@ class KakebosController < ApplicationController
   end
 
   def create
-    begin
-      upload_file = kakebo_params[:scan]
-      regist_params = {}
-      regist_params = kakebo_params
-      name = upload_file.original_filename
-      regist_params[:scan] =  IMAGE_PATH + name
-    rescue
-      @kakebo = Kakebo.new(kakebo_params)
-      if @kakebo.save
-        flash[:success] = "登録が正常に完了しました"
-        redirect_to new_kakebo_path
-      else
-        render action: 'new'
-      end
-      return
-    end
-    if !['.jpg', '.png', '.gif'].include?(File.extname(name).downcase)
-      flash[:error] = 'jpg, png, gifのみアップロードできます'
-      redirect_to new_kakebo_path
-    elsif upload_file.size > 5.megabyte
-      flash[:error] = 'アップロードできるファイルのサイズは5MBまでです'
-      redirect_to new_kakebo_path
-    else
-      File.open(regist_params[:scan], "wb") {|f| f.write(upload_file.read)}
-      @kakebo = Kakebo.new(regist_params)
-      if @kakebo.save
-        flash[:success] = "登録が正常に完了しました"
-        redirect_to new_kakebo_path
-      else
-        render action: 'new'
-      end
-    end
+    register_data(kakebo_params)
   end
 
   def index
@@ -188,41 +157,7 @@ class KakebosController < ApplicationController
   end
 
   def update
-    @kakebo = Kakebo.find(params[:id])
-    begin
-      if kakebo_params[:scan]
-        upload_file = kakebo_params[:scan]
-      elsif @kakebo.scan
-        upload_file = @kakebo.scan
-      end
-      regist_params = {}
-      regist_params = kakebo_params
-      name = upload_file.original_filename
-      regist_params[:scan] = IMAGE_PATH + name
-    rescue
-      if @kakebo.update_attributes(regist_params)
-        flash[:success] = "更新が完了しました"
-        redirect_to @kakebo
-      else
-        render action: 'edit'
-      end
-      return
-    end
-    if !['.jpg', '.png', '.gif'].include?(File.extname(name).downcase)
-      flash[:error] = 'jpg, pdng, gifのみアップロードできます'
-      redirect_to edit_kakebo_path(@kakebo)
-    elsif upload_file.size > 5.megabyte
-      flash[:error] = 'アップロードできるファイルのサイズは5MBまでです'
-      redirect_to edit_kakebo_path(@kakebo)
-    else
-      File.open(regist_params[:scan], "wb") {|f| f.write(upload_file.read)}
-      if @kakebo.update_attributes(regist_params)
-        flash[:success] = "更新が完了しました"
-        redirect_to @kakebo
-      else
-        render action: 'edit'
-      end
-    end
+    update_data(kakebo_params)
   end
 
   def destroy
