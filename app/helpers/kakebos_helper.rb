@@ -45,6 +45,7 @@ module KakebosHelper
       regist_params = {}
       regist_params = kakebo_params
       name = upload_file.original_filename
+      size = upload_file.size
       regist_params[:scan] = IMAGE_PATH + name
     rescue
       if @kakebo.update_attributes(regist_params)
