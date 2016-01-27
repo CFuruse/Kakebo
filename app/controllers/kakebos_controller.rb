@@ -44,7 +44,7 @@ class KakebosController < ApplicationController
     @shushi = @shunyu_sum - @shishutsu_sum
     # 各種類の数量を収集
     @kind_hash = {
-      食費: 0, 家賃: 0, 保険: 0, 娯楽: 0,
+      食費: 0, 携帯電話: 0, 家賃: 0, 保険: 0, 娯楽: 0,
       日用品: 0, 洋服: 0, 医療費: 0, 交通費: 0,
       ガソリン: 0, 光熱費: 0, 子供: 0, その他出費: 0,
       生活費: 0, その他収入: 0
